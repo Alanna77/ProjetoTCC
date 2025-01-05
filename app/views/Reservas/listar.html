@@ -1,0 +1,20 @@
+#{extends 'main.html' /}
+#{set title:'Listagem de Reservas' /}
+
+<html>
+
+<h4>Reservas realizadas</h4>
+ <ul>
+	#{list items:reservas, as:'r'}
+		<li>Responsável pela reserva: ${r.responsavel} <br/> Data: ${r.dataReserva} <br/> Horário: ${r.horario}
+			| <a href="@{Reservas.editarReserva(r.id)}">Editar</a> 
+			| <a href="@{Reservas.removerReserva(r.id)}">Remover</a>
+		</li>
+	#{/list}
+</ul>
+	
+
+</form>
+
+</html>
+

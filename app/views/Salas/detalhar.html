@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+#{set title:'Detalhamento de Pessoa' /}
+
+<h1>Detalhes da sala:</h1>
+
+<p>Número: ${sala.numero}</p>
+<p>Capacidade: ${sala.capacidade}</p>
+<p>Equipamento: ${sala.equipamento}</p>
+
+<a href="@{Salas.form}">Cadastrar Nova</a> |
+<a href="@{Salas.editarSala(sala.id)}">Editar</a> |
+<a href="@{Salas.listar}">Voltar para a listagem</a>

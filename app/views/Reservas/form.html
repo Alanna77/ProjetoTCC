@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+#{set title:'Realizar Reservas de Salas' /}
+
+<html>
+
+<form action="@{Reservas.consultarReserva}">
+
+	<input type="hidden" name="reserva.id" value="${r?.id}"/>
+
+	<label>Responsável pela reserva:</label>
+	<input type="text" name="reserva.responsavel" required/><br/>
+	<label>Data da reserva:</label>
+	<input type="date" name="reserva.dataReserva" required/><br/>
+	
+	<label>Selecione o horário:</label>
+	<select id="reservaID" name="reserva.horario" required>
+	
+  	<option name="reserva.horario" value="07:00 - 07:45">07:00 - 07:45</option>
+  	<option name="reserva.horario" value="07:45 - 08:30">07:45 - 08:30</option>
+  	<option name="reserva.horario" value="08:50 - 09:35">08:50 - 09:35</option>
+  	<option name="reserva.horario" value="09:35 - 10:20">09:35 - 10:20</option>
+  	<option name="reserva.horario" value="10:30 - 11:15">10:30 - 11:15</option>
+  	<option name="reserva.horario" value="11:15 - 12:00">11:15 - 12:00</option>
+  	<option name="reserva.horario" value="13:00 - 13:45">13:00 - 13:45</option>
+  	<option name="reserva.horario" value="13:45 - 14:30">13:45 - 14:30</option>
+  	<option name="reserva.horario" value="14:50 - 15:35">14:50 - 15:35</option>
+  	<option name="reserva.horario" value="15:35 - 16:20">15:35 - 16:20</option>
+  	<option name="reserva.horario" value="16:30 - 17:15">16:30 - 17:15</option>
+  	<option name="reserva.horario" value="17:15 - 18:00">17:15 - 18:00</option>
+	</select>
+	
+	
+	<label>Selecione a sala:</label>
+	<select name="sala.reserva.id">
+		#{list items:salas, as:'s'}
+			<option value="${s.id}">${s?.id}</option>
+			#{/list}
+	</select>
+	
+	<input type="submit" value="Realizar reserva"/>
+	
+
+</form>
+
+</html>
+

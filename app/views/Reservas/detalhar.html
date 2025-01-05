@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:'Detalhamento de Pessoa' /}
+
+<h1>Detalhes da reserva:</h1>
+
+<p>Responsável: ${reserva.responsavel}</p>
+<p>Data: ${reserva.dataReserva}</p>
+<p>Horário: ${reserva.horario}</p>
+<p>Sala: ${reserva.sala.id}</p>
+
+<a href="@{Reservas.form}">Cadastrar Nova</a> |
+<a href="@{Reservas.editarReserva(reserva.id)}">Editar</a> |
+<a href="@{Reservas.listar}">Voltar para a listagem</a>

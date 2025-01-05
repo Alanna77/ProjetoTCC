@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Login do Usuário' /}
+
+<html>
+
+<p>Login</p>
+
+<form action="@{Logins.logar}">
+
+	<label>Username:</label>
+	<input type="text" name="nomeUsuario" required/><br/>
+	<label>Senha:</label>
+	<input type="password" name="senha" required/><br/>
+	
+	<input type="submit" value="Fazer login"/>
+	
+
+</form>
+
+</html>
+

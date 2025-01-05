@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set title:'Listagem de Salas' /}
+
+<html>
+
+<h4>Salas cadastradas</h4>
+ <ul>
+	#{list items:salas, as:'s'}
+		<li>Número da sala: ${s.numero} <br/> Capacidade: ${s.capacidade} <br/> Equipamento: ${s.equipamento}
+			| <a href="@{Salas.detalhar(s.id)}">Detalhar</a>
+			| <a href="@{Salas.editarSala(s.id)}">Editar</a> 
+			| <a href="@{Salas.deletarSala(s.id)}">Remover</a>
+			
+		</li>
+	#{/list}
+</ul>
+
+	<a href=@{Salas.form}>Cadastrar nova sala</a>
+	
+
+</form>
+
+</html>
+

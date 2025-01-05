@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Cadastro de Salas' /}
+
+<html>
+
+<form action="@{Salas.cadastrar}">
+
+	<input type="hidden" name="sala.id" value="${s?.id}"/>
+
+	<label>Número da sala:</label>
+	<input type="number" name="sala.numero" required min="1"/><br/>
+	<label>Capacidade da sala:</label>
+	<input type="number" name="sala.capacidade" required min="1"/><br/>
+	<label>Equipamento:</label>
+	<input type="text" name="sala.equipamento" required/><br/>
+	
+	<input type="submit" value="Cadastrar sala"/>
+	
+
+</form>
+
+</html>
+
