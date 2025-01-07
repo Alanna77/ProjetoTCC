@@ -3,22 +3,37 @@
 
 <html>
 
-<h4>Salas cadastradas</h4>
- <ul>
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <h4>Salas cadastradas</h4>
+    </div>
+
+
+<div class="grid text-center">
+  <div class="g-col-6 g-col-md-4">      
+  <ul>
 	#{list items:salas, as:'s'}
-		<li>Número da sala: ${s.numero} <br/> Capacidade: ${s.capacidade} <br/> Equipamento: ${s.equipamento}
-			| <a href="@{Salas.detalhar(s.id)}">Detalhar</a>
-			| <a href="@{Salas.editarSala(s.id)}">Editar</a> 
-			| <a href="@{Salas.deletarSala(s.id)}">Remover</a>
+		<li>Número da sala: ${s.numero} <br/> Capacidade: ${s.capacidade} <br/> Equipamento: ${s.equipamento}</br>
+			<button type="submit" class="btn btn-primary"><a href="@{Salas.detalhar(s.id)}">Detalhar</a></button> 
+			 <button type="submit" class="btn btn-primary"><a href="@{Salas.editarSala(s.id)}">Editar</a> </button>
+			 <button type="submit" class="btn btn-primary"><a href="@{Salas.deletarSala(s.id)}">Remover</a></button></br>
 			
+			<button type="submit" class="btn btn-primary"><a href=@{Salas.form}>Cadastrar nova sala</a></button>
 		</li>
 	#{/list}
 </ul>
+</div>
 
-	<a href=@{Salas.form}>Cadastrar nova sala</a>
+
+	
+   
+ 
 	
 
-</form>
+
 
 </html>
+
+
 

@@ -3,21 +3,34 @@
 
 <html>
 
+<h3>Cadastro de Salas</h3>
 <form action="@{Salas.cadastrar}">
-
 	<input type="hidden" name="sala.id" value="${s?.id}"/>
-
-	<label>Número da sala:</label>
-	<input type="number" name="sala.numero" required min="1"/><br/>
-	<label>Capacidade da sala:</label>
-	<input type="number" name="sala.capacidade" required min="1"/><br/>
-	<label>Equipamento:</label>
-	<input type="text" name="sala.equipamento" required/><br/>
 	
-	<input type="submit" value="Cadastrar sala"/>
+  <div class="row mb-3">
+    <label for="inputnumero" class="col-sm-2 col-form-label">Número da sala:</label>
+    <div class="col-sm-10">
+      <input type="number" name="sala.numero"class="form-control" id="inputEmail3" required min="1">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputcapacidade" class="col-sm-2 col-form-label">Capacidade:</label>
+    <div class="col-sm-10">
+      <input type="number" name="sala.capacidade"class="form-control" id="inputPassword3" required min="1">
+    </div>
+  </div>
+    <div class="row mb-3">
+    <label for="inputequipamento" class="col-sm-2 col-form-label">Equipamento:</label>
+    <div class="col-sm-10">
+      <input type="text" name="sala.equipamento"class="form-control" id="inputPassword3" required/>
+    </div>
+  </div>
+  </form>
+  
+	
+	<button type="submit" class="btn btn-primary" value="Cadastrar sala">Cadastrar Sala</button>
 	
 
-</form>
 
 </html>
 
