@@ -1,122 +1,118 @@
-#{extends 'main.html' /}
-#{set title:'Detalhamento de Sala' /}
+#{extends 'main.html' /} #{set title:'Detalhamento de Sala' /}
 
 <html>
 <meta charset="UTF-8">
 
 <style>
-
+body {
+	background-color: #2F4F4F;
+}
 .details-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    margin: 2rem auto;
+	background-color: #fff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 600px;
+	margin: 2rem auto;
 }
 
-
 .details-container .detail-item {
-    font-size: 1.2rem;
-    margin-bottom: 1.2rem;
-    color: #333;
+	font-size: 1.2rem;
+	margin-bottom: 1.2rem;
+	color: #333;
 }
 
 .details-container .detail-item strong {
-    font-weight: bold;
-    color: #007bff;
+	font-weight: bold;
+	color: #2F4F4F;
 }
 
-
 .actions {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-between;
 }
 
 .actions .btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 4px;
-    color: white;
-    transition: background-color 0.3s ease;
+	padding: 0.6rem 1.2rem;
+	font-size: 1rem;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 4px;
+	color: white;
+	transition: background-color 0.3s ease;
 }
 
-
 .actions .btn-primary {
-    background-color: #007bff;
+	background-color: #00FF7F;
+	color: #2F4F4F;
 }
 
 .actions .btn-primary:hover {
-    background-color: #0056b3;
+	background-color: #0056b3;
 }
 
-
 .actions .btn-secondary {
-    background-color: #6c757d;
+	background-color: #6c757d;
 }
 
 .actions .btn-secondary:hover {
-    background-color: #5a6268;
+	background-color: #5a6268;
 }
 
-
 .actions .btn-light {
-    background-color: #f8f9fa;
-    color: #333;
-    border: 1px solid #ced4da;
+	background-color: #f8f9fa;
+	color: #333;
+	border: 1px solid #ced4da;
 }
 
 .actions .btn-light:hover {
-    background-color: #e2e6ea;
+	background-color: #e2e6ea;
 }
-
 
 header h1 {
-    font-size: 2rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 2rem;
+	font-size: 2rem;
+	color: gray;
+	text-align: center;
+	margin-bottom: 2rem;
 }
-
 
 footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-top: 3rem;
+	text-align: center;
+	font-size: 0.9rem;
+	color: #aaa;
+	margin-top: 3rem;
 }
 }
-
 </style>
 <body>
-<header>
-        <h1>Detalhes da Sala</h1>
-    </header>
-    <main>
-        <div class="details-container">
-            <div class="detail-item">
-                <strong>Número:</strong> ${sala.numero}
-            </div>
-            <div class="detail-item">
-                <strong>Capacidade:</strong> ${sala.capacidade}
-            </div>
-            <div class="detail-item">
-                <strong>Equipamentos:</strong> ${sala.equipamento}
-            </div>
-            <div class="actions">
-                <a href="@{Salas.form}" class="btn btn-primary">Cadastrar Nova</a>
-                <a href="@{Salas.editarSala(sala.id)}" class="btn btn-secondary">Editar</a>
-                <a href="@{Salas.listar}" class="btn btn-light">Voltar para a Listagem</a>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Gerenciamento de Salas. Todos os direitos reservados.</p>
-    </footer>
+	<header>
+		<h1>Detalhes da Sala</h1>
+	</header>
+	<main>
+		<div class="details-container">
+			<div class="detail-item">
+				<strong>Número:</strong> ${sala.numero}
+			</div>
+			<div class="detail-item">
+				<strong>Capacidade:</strong> ${sala.capacidade}
+			</div>
+			<div class="detail-item">
+				<strong>Equipamentos:</strong> ${sala.equipamento}
+			</div>
+			<div class="actions">
+				<a href="@{Salas.form}" class="btn btn-primary">Cadastrar Nova</a> <a
+					href="@{Salas.editarSala(sala.id)}" class="btn btn-secondary">Editar</a>
+				<a href="@{Salas.listar}" class="btn btn-light">Voltar para a
+					Listagem</a>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<p>&copy; 2025 Gerenciamento de Salas. Todos os direitos
+			reservados.</p>
+	</footer>
 
 </body>
 

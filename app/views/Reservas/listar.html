@@ -1,116 +1,117 @@
-#{extends 'main.html' /}
-#{set title:'Reservas' /}
+#{extends 'main.html' /} #{set title:'Reservas' /}
 
 <html>
 <meta charset="UTF-8">
 <style>
 
+body {
+	background-color: #2F4F4F;
+}
 .reservas-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
+	background-color: #fff;
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 800px;
+	margin: 2rem auto;
 }
 
-
 .reservas-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .reserva-item {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+	background-color: #f9f9f9;
+	padding: 1.5rem;
+	border-radius: 8px;
+	margin-bottom: 1.5rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .reserva-item strong {
-    color: #007bff;
-    font-weight: bold;
+	color: #2F4F4F;
+	font-weight: bold;
 }
 
-
 .actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
+	margin-top: 1rem;
+	display: flex;
+	gap: 1rem;
 }
 
 .actions .btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    text-decoration: none;
-    border-radius: 4px;
-    color: white;
-    transition: background-color 0.3s ease;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+	text-decoration: none;
+	border-radius: 4px;
+	color: white;
+	transition: background-color 0.3s ease;
 }
 
-
+.actions .btn-primary {
+	background-color: #00FF7F;
+	color: #2F4F4F;
+}
 .actions .btn-secondary {
-    background-color: #6c757d;
+	background-color: #6c757d;
 }
 
 .actions .btn-secondary:hover {
-    background-color: #5a6268;
+	background-color: #5a6268;
 }
 
 .actions .btn-danger {
-    background-color: #dc3545;
+	background-color: #dc3545;
 }
 
 .actions .btn-danger:hover {
-    background-color: #c82333;
+	background-color: #c82333;
 }
-
 
 header h4 {
-    font-size: 2rem;
-    color: #333;
-    text-align: center;
-    margin-bottom: 2rem;
+	font-size: 2rem;
+	color: gray;
+	text-align: center;
+	margin-bottom: 2rem;
 }
 
-
 footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-top: 3rem;
+	text-align: center;
+	font-size: 0.9rem;
+	color: #aaa;
+	margin-top: 3rem;
 }
 </style>
 <body>
-    <header>
-        <h4>Reservas Realizadas</h4>
-    </header>
-    <main>
-        <div class="reservas-container">
-            <ul class="reservas-list">
-                #{list items:reservas, as:'r'}
-                    <li class="reserva-item">
-                        <strong>Sala Reservada:</strong> ${r.sala.id} <br>
-                        <strong>Responsável pela Reserva:</strong> ${r.responsavel} <br>
-                        <strong>Data:</strong> ${r.dataReserva} <br>
-                        <strong>Horário:</strong> ${r.horario} <br>
-                        <div class="actions">
-                            <a href="@{Reservas.editarReserva(r.id)}" class="btn btn-secondary">Editar</a>
-                            <a href="@{Reservas.removerReserva(r.id)}" class="btn btn-danger">Remover</a>
-                        </div>
-                    </li>
-                #{/list}
-            </ul>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2025 Gerenciamento de Reservas. Todos os direitos reservados.</p>
-    </footer>
+	<header>
+		<h4>Reservas Realizadas</h4>
+	</header>
+	<main>
+		<div class="reservas-container">
+			<ul class="reservas-list">
+				#{list items:reservas, as:'r'}
+				<li class="reserva-item"><strong>Sala Reservada:</strong>
+					${r.sala.numero} <br> <strong>Responsável pela
+						Reserva:</strong> ${r.responsavel} <br> <strong>Data:</strong>
+					${r.dataReserva} <br> <strong>Horário:</strong> ${r.horario} <br>
+					<div class="actions">
+						<a href="@{Reservas.form}" class="btn btn-primary">Cadastrar
+							Nova</a> <a href="@{Reservas.editarReserva(r.id)}"
+							class="btn btn-secondary">Editar</a> <a
+							href="@{Reservas.removerReserva(r.id)}" class="btn btn-danger">Remover</a>
+					</div></li> #{/list}
+			</ul>
+		</div>
+	</main>
+	<footer>
+		<p>&copy; 2025 Gerenciamento de Reservas. Todos os direitos
+			reservados.</p>
+	</footer>
 </body>
-	
+
 
 </html>
 
