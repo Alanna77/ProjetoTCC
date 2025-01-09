@@ -25,12 +25,10 @@ public class Salas extends Controller{
 		Sala salaCadastrada = Sala.find("numero = ?1", sala.numero).first();
 		if (salaCadastrada != null && sala.id == null) {
 			flash.error("Já existe uma sala com esse número!");
-			listar();
+			form();
+			return;
 		}
 		else {
-			sala.numero = sala.numero;
-			sala.capacidade = sala.capacidade;
-			sala.equipamento = sala.equipamento;
 			sala.save();
 			flash.success("Sala cadastrada com sucesso!");
 			listar();
@@ -56,8 +54,8 @@ public class Salas extends Controller{
 	
 	public static void editarSala(Long id) {
 		Sala s = Sala.findById(id);
-		List<Reserva> reservas = Reserva.findAll();
-		renderTemplate("Salas/form.html", s, reservas);
+		List<Sala> sala = Sala.findAll();
+		renderTemplate("Salas/form.html", s);
 		
 	}
 

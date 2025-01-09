@@ -10,22 +10,36 @@ import play.mvc.With;
 
 public class Reservas extends Controller{
 	
-	public static void form() {
+	public static void form(Long id) {
+		Reserva r = id != null ? Reserva.findById(id) : new Reserva();
 		List<Sala> s = Sala.findAll();
-		render(s);
+		render(r, s);
 	}
 	
 	public static void consultarReserva(Reserva reserva) {
-		Reserva reservas = Reserva.find("horario = ?1", reserva.horario).first();
-		if (reservas != null && reservas.id == null) {
-			flash.error("O horário está indisponível!");
-			listar();
+		
+		 if (reserva.sala == null || reserva.sala.id == null) {
+		        flash.error("Selecione uma sala válida!");
+		        form(null); 
+		        return;
+		    }
+		 
+		 Sala sala = Sala.findById(reserva.sala.id);
+		 if (sala == null) {
+		        flash.error("Sala não encontrada!");
+		        form(null);
+		        return;
+		    }
+		
+		Reserva reservaExistente = Reserva.find("dataReserva = ?1 AND horario = ?2 AND sala.id = ?3", reserva.dataReserva, reserva.horario, sala.id).first();
+		if(reservaExistente != null) {
+			flash.error("Este horário já está reservado para a sala informada!");
+			form(null);
+			return;
 		}
 		else {
-			reserva.responsavel = reserva.responsavel;
-			reserva.dataReserva = reserva.dataReserva;
-			reserva.horario = reserva.horario;
-			reserva.save();
+			reserva.sala = sala;
+		    reserva.save();
 			flash.success("Reserva realizada com sucesso!");
 			listar();
 				
@@ -51,8 +65,8 @@ public class Reservas extends Controller{
 	
 	public static void editarReserva(Long id) {
 		Reserva r = Reserva.findById(id);
-		List<Sala> s = Sala.findAll();
-		renderTemplate("Salas/form.html", s, r);
+		List<Reserva> reserva = Reserva.findAll();
+		renderTemplate("Reservas/form.html", r);
 	
 	}
 

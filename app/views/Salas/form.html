@@ -1,35 +1,158 @@
 #{extends 'main.html' /}
 #{set title:'Cadastro de Salas' /}
 
-<html>
+<html lang="PT-BR">
+ <meta charset="UTF-8">
 
-<h3>Cadastro de Salas</h3>
-<form action="@{Salas.cadastrar}">
-	<input type="hidden" name="sala.id" value="${s?.id}"/>
-	
-  <div class="row mb-3">
-    <label for="inputnumero" class="col-sm-2 col-form-label">N�mero da sala:</label>
-    <div class="col-sm-10">
-      <input type="number" name="sala.numero"class="form-control" id="inputEmail3" required min="1">
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputcapacidade" class="col-sm-2 col-form-label">Capacidade:</label>
-    <div class="col-sm-10">
-      <input type="number" name="sala.capacidade"class="form-control" id="inputPassword3" required min="1">
-    </div>
-  </div>
-    <div class="row mb-3">
-    <label for="inputequipamento" class="col-sm-2 col-form-label">Equipamento:</label>
-    <div class="col-sm-10">
-      <input type="text" name="sala.equipamento"class="form-control" id="inputPassword3" required/>
-    </div>
-  </div>
-  </form>
-  
-	
-	<button type="submit" class="btn btn-primary" value="Cadastrar sala">Cadastrar Sala</button>
-	
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2F4F4F;
+    color: #333;
+}
+
+header {
+    background-color: #00FF7F;
+    color: #2F4F4F;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group .small-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #00FF7F;
+    margin-top: 2rem;
+}
+}
+        
+    </style>
+<body>
+    <header>
+        <h1>Cadastro de Salas</h1>
+    </header>
+    <main>
+        <div class="form-container">
+            <form action="@{Salas.cadastrar}">
+                <input type="hidden" name="sala.id" value="${s?.id}"/>
+                
+                <div class="form-group">
+                    <label for="numero">Número da Sala:</label>
+                    <input type="text" id="numeroID" name="sala.numero" value="${s?.numero}" 
+                           placeholder="Digite o número da sala" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacidade">Capacidade:</label>
+                    <input type="number" id="capacidadeID" name="sala.capacidade" value="${s?.capacidade}" 
+                           placeholder="Digite a capacidade" required min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="equipamento">Equipamentos:</label>
+                    <input type="text" id="equipamentoID" name="sala.equipamento" value="${s?.equipamento}" 
+                           placeholder="Ex.: Projetor, Quadro, etc." required>
+                    <span class="small-text">Separe os equipamentos com vírgulas.</span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Cadastrar Sala</button>
+                    <button type="reset" class="btn btn-secondary">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Gerenciamento de Salas. Todos os direitos reservados.</p>
+    </footer>
+</body>
 
 
 </html>

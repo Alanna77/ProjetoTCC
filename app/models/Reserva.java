@@ -20,7 +20,7 @@ public class Reserva extends Model{
 	public String horario;
 	
 	@ManyToOne
-	public Sala salas;
+	public Sala sala;
 
 }
 

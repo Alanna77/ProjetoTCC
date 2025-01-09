@@ -1,0 +1,113 @@
+#{extends 'main.html' /}
+#{set title:'Painel de Administração' /}
+
+<html>
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2F4F4F;
+        }
+        header {
+            background-color: #00FF7F;
+            color: #2F4F4F;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h2 {
+            margin: 0;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .user-info p {
+            margin: 0;
+        }
+        .admin-content {
+            margin: 2rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .admin-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .admin-option {
+            padding: 1rem;
+            background-color: #e9ecef;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .admin-option:hover {
+            background-color: #dee2e6;
+        }
+        .admin-option a {
+            text-decoration: none;
+            color: #343a40;
+            font-weight: bold;
+        }
+        .admin-option i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #00FF7F;
+            color: #2F4F4F;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Painel de Administração</h2>
+        <div class="user-info">
+            <!-- Exibe nome do usuário logado se ele estiver na sessão -->
+            #{if session.usuarioLogado}
+                <p>Usuário Logado: ${session.usuarioLogado}</p>
+                <a href="@{Logins.sair}" class="btn btn-danger btn-sm">Sair</a>
+            #{else}
+                <p>Você não está logado. <a href="@{Logins.logar}" class="btn btn-primary btn-sm">Login</a></p>
+                #{/else}
+            #{/if}
+        </div>
+    </header>
+
+    <main>
+        <!-- Conteúdo principal do painel de administração -->
+        <div class="admin-content">
+            <h3>Gerenciar o Sistema</h3>
+            <div class="admin-options">
+                <div class="admin-option">
+                 <i class="fas fa-door-open"></i>
+                    <a href="@{Salas.listar}">Gerenciar Salas</a>
+                </div>
+                <div class="admin-option">
+                <i class="fas fa-calendar-alt"></i>
+                    <a href="@{Reservas.listar}">Gerenciar Reservas</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Administração. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
+</html>
