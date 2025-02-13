@@ -94,6 +94,21 @@ h2 {
 	margin-top: 2rem;
 	text-align: center;
 }
+.btn-back {
+    background-color: #4682B4;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #36648B;
+}
+
 
 footer {
 	text-align: center;
@@ -130,6 +145,7 @@ footer {
 			</div>
 			<div class="add-button">
 				<a href="@{Salas.form}" class="btn btn-add">Cadastrar Nova Sala</a>
+				<a href="@{Logins.formPainel()}" class="btn btn-add">Voltar</a>
 			</div>
 		</section>
 	</main>

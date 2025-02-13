@@ -23,6 +23,9 @@ public class Logins extends Controller{
 			renderTemplate("Logins/painel.html");
 		}
 	}
+	public static void formPainel() {
+		renderTemplate("Logins/painel.html");
+	}
 	
 	public static void sair() {
 		session.clear();

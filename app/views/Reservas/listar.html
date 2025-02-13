@@ -50,11 +50,6 @@ body {
 	color: white;
 	transition: background-color 0.3s ease;
 }
-
-.actions .btn-primary {
-	background-color: #00FF7F;
-	color: #2F4F4F;
-}
 .actions .btn-secondary {
 	background-color: #6c757d;
 }
@@ -69,6 +64,24 @@ body {
 
 .actions .btn-danger:hover {
 	background-color: #c82333;
+}
+.add-reserva-button {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.add-reserva-button .btn {
+    background-color: #00FF7F;
+    color: #2F4F4F;
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.add-reserva-button .btn:hover {
+    background-color: #4682B4;
+    color: white;
 }
 
 header h4 {
@@ -98,13 +111,16 @@ footer {
 						Reserva:</strong> ${r.responsavel} <br> <strong>Data:</strong>
 					${r.dataReserva} <br> <strong>Horário:</strong> ${r.horario} <br>
 					<div class="actions">
-						<a href="@{Reservas.form}" class="btn btn-primary">Cadastrar
-							Nova</a> <a href="@{Reservas.editarReserva(r.id)}"
+						 <a href="@{Reservas.editarReserva(r.id)}"
 							class="btn btn-secondary">Editar</a> <a
 							href="@{Reservas.removerReserva(r.id)}" class="btn btn-danger">Remover</a>
 					</div></li> #{/list}
 			</ul>
 		</div>
+		<div class="add-reserva-button">
+    	<a href="@{Reservas.form}" class="btn btn-primary">Cadastrar Nova Reserva</a>
+		<a href="@{Logins.formPainel()}" class="btn btn-primary">Voltar</a>
+</div>
 	</main>
 	<footer>
 		<p>&copy; 2025 Gerenciamento de Reservas. Todos os direitos
