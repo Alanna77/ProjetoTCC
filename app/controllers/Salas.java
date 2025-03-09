@@ -44,7 +44,15 @@ public class Salas extends Controller {
 	public static void deletarSala(Long id) {
 		if (session.contains("administrador")) {
 			Sala sala = Sala.findById(id);
-			sala.delete();
+			
+	        Reserva salaReservada = Reserva.find("sala.id = ?1", id).first();
+	        
+	        if (salaReservada != null) {
+	            flash.error("Não é possível deletar a sala, pois há reservas associadas a ela!");
+	        } else {
+	            sala.delete();
+	            flash.success("Sala deletada com sucesso!");
+	        }
 		} else {
 			flash.error("Somente os administradores podem realizar essa ação!");
 		}

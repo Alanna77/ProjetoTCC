@@ -1,133 +1,140 @@
-#{extends 'main.html' /} #{set title:'Reservas' /}
+#{extends 'main.html' /}
+#{set title:'Reservas' /}
 
-<html>
-<meta charset="UTF-8">
-<style>
-
-body {
-	background-color: #2F4F4F;
-}
-.reservas-container {
-	background-color: #fff;
-	padding: 2rem;
-	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	width: 100%;
-	max-width: 800px;
-	margin: 2rem auto;
-}
-
-.reservas-list {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
-.reserva-item {
-	background-color: #f9f9f9;
-	padding: 1.5rem;
-	border-radius: 8px;
-	margin-bottom: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.reserva-item strong {
-	color: #2F4F4F;
-	font-weight: bold;
-}
-
-.actions {
-	margin-top: 1rem;
-	display: flex;
-	gap: 1rem;
-}
-
-.actions .btn {
-	padding: 0.5rem 1rem;
-	font-size: 1rem;
-	text-decoration: none;
-	border-radius: 4px;
-	color: white;
-	transition: background-color 0.3s ease;
-}
-.actions .btn-secondary {
-	background-color: #6c757d;
-}
-
-.actions .btn-secondary:hover {
-	background-color: #5a6268;
-}
-
-.actions .btn-danger {
-	background-color: #dc3545;
-}
-
-.actions .btn-danger:hover {
-	background-color: #c82333;
-}
-.add-reserva-button {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.add-reserva-button .btn {
-    background-color: #00FF7F;
-    color: #2F4F4F;
-    padding: 0.5rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    text-decoration: none;
-}
-
-.add-reserva-button .btn:hover {
-    background-color: #4682B4;
-    color: white;
-}
-
-header h4 {
-	font-size: 2rem;
-	color: gray;
-	text-align: center;
-	margin-bottom: 2rem;
-}
-
-footer {
-	text-align: center;
-	font-size: 0.9rem;
-	color: #aaa;
-	margin-top: 3rem;
-}
-</style>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Reservas realizadas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('/public/images/Ej.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        header {
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .user-info {
+            font-size: 1rem;
+        }
+        .reservas-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 5% auto;
+            text-align: center;
+        }
+        .reservas-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .reserva-item {
+            background: linear-gradient(135deg, #ffffff, #f1f3f5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+        .reserva-item strong {
+            color: #2F4F4F;
+        }
+        .actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
 <body>
-	<header>
-		<h4>Reservas Realizadas</h4>
-	</header>
-	<main>
-		<div class="reservas-container">
-			<ul class="reservas-list">
-				#{list items:reservas, as:'r'}
-				<li class="reserva-item"><strong>Sala Reservada:</strong>
-					${r.sala.numero} <br> <strong>Responsável pela
-						Reserva:</strong> ${r.responsavel} <br> <strong>Data:</strong>
-					${r.dataReserva} <br> <strong>Horário:</strong> ${r.horario} <br>
-					<div class="actions">
-						 <a href="@{Reservas.editarReserva(r.id)}"
-							class="btn btn-secondary">Editar</a> <a
-							href="@{Reservas.removerReserva(r.id)}" class="btn btn-danger">Remover</a>
-					</div></li> #{/list}
-			</ul>
-		</div>
-		<div class="add-reserva-button">
-    	<a href="@{Reservas.form}" class="btn btn-primary">Cadastrar Nova Reserva</a>
-		<a href="@{Logins.formPainel()}" class="btn btn-primary">Voltar</a>
-</div>
-	</main>
-	<footer>
-		<p>&copy; 2025 Gerenciamento de Reservas. Todos os direitos
-			reservados.</p>
-	</footer>
+    <header>
+        <h2>Reservas Realizadas</h2>
+        <div class="user-info">
+            #{if session.usuarioLogado}
+            <p>Usuário Logado: ${session.usuarioLogado}</p>
+            <a href="@{Logins.sair}" class="btn btn-danger btn-sm">Sair</a>
+            #{else}
+            <p>
+                Você não está logado. <a href="@{Logins.logar}" class="btn btn-primary btn-sm">Login</a>
+            </p>
+            #{/else} #{/if}
+        </div>
+    </header>
+
+    <main>
+        <div class="reservas-container">
+          <h3 text-align="center">Lista de Reservas</h3>
+            <ul class="reservas-list">
+                #{list items:reservas, as:'r'}
+                <li class="reserva-item">
+                    <strong>Sala Reservada:</strong> ${r.sala.numero} <br>
+                    <strong>Responsável pela Reserva:</strong> ${r.responsavel} <br>
+                    <strong>Data:</strong> ${r.dataReserva} <br>
+                    <strong>Horário:</strong> ${r.horario} <br>
+                    <div class="actions">
+                        <a href="@{Reservas.editarReserva(r.id)}" class="btn btn-warning">Editar</a>
+                        <a href="@{Reservas.removerReserva(r.id)}" class="btn btn-danger">Remover</a>
+                    </div>
+                </li>
+                #{/list}
+            </ul>
+              <div class="text-center mt-4">
+               <a href="@{Logins.formPainel()}" class="btn btn-secondary">Voltar</a>
+         </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Reservas. Todos os direitos reservados.</p>
+    </footer>
 </body>
-
-
 </html>
-

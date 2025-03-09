@@ -1,161 +1,104 @@
-#{extends 'main.html' /} #{set title:'Salas cadastradas' /}
+#{extends 'main.html' /}
+#{set title:'Salas cadastradas' /}
 
-<html>
-<meta charset="UTF-8">
-
-<style>
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #2F4F4F;
-}
-
-header {
-	background-color: #00FF7F;
-	color: #2F4F4F;
-	padding: 1rem 0;
-	text-align: center;
-}
-
-main {
-	max-width: 1200px;
-	margin: 2rem auto;
-	padding: 1rem;
-}
-
-h2 {
-	margin-bottom: 1rem;
-	color: gray;
-}
-
-.grid-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 1rem;
-}
-
-.card {
-	background-color: white;
-	padding: 1.5rem;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	text-align: center;
-}
-
-.card h3 {
-	margin-bottom: 0.5rem;
-}
-
-.card p {
-	margin: 0.5rem 0;
-}
-
-.button-group {
-	margin-top: 1rem;
-	display: flex;
-	gap: 0.5rem;
-	justify-content: center;
-}
-
-.btn {
-	display: inline-block;
-	padding: 0.5rem 1rem;
-	font-size: 1rem;
-	text-decoration: none;
-	border-radius: 4px;
-	transition: background-color 0.3s;
-	color: white;
-}
-
-.btn:hover {
-	opacity: 0.8;
-	color: white;
-	background-color: gray
-}
-
-.btn {
-	background-color:#00FF7F ;
-	color:#2F4F4F;
-}
-
-.btn-edit {
-	background-color: #ffc107;
-}
-
-.btn-delete {
-	background-color: #dc3545;
-}
-
-.btn-add {
-	background-color: #00FF7F;
-	color:#2F4F4F;
-	display: inline-block;
-	margin-top: 2rem;
-	text-align: center;
-}
-.btn-back {
-    background-color: #4682B4;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 1rem;
-    transition: background-color 0.3s;
-}
-
-.btn-back:hover {
-    background-color: #36648B;
-}
-
-
-footer {
-	text-align: center;
-	padding: 1rem;
-	background-color: #00FF7F;
-	margin-top: 2rem;
-}
-</style>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Salas cadastradas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('/public/images/Ej.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        header {
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 5% auto;
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
 <body>
-	<header>
-		<h1>Gerenciamento de Salas</h1>
-	</header>
-	<main>
-		<section class="list-section">
-			<h2>Salas Cadastradas</h2>
-			<div class="grid-container">
-				#{list items:salas, as:'s'}
-				<div class="card">
-					<h3>Sala ${s.numero}</h3>
-					<p>
-						<strong>Capacidade:</strong> ${s.capacidade} pessoas
-					</p>
-					<p>
-						<strong>Equipamento:</strong> ${s.equipamento}
-					</p>
-					<div class="button-group">
-						<a href="@{Salas.detalhar(s.id)}" class="btn">Detalhar</a> <a
-							href="@{Salas.editarSala(s.id)}" class="btn btn-edit">Editar</a>
-						<a href="@{Salas.deletarSala(s.id)}" class="btn btn-delete">Remover</a>
-					</div>
-				</div>
-				#{/list}
-			</div>
-			<div class="add-button">
-				<a href="@{Salas.form}" class="btn btn-add">Cadastrar Nova Sala</a>
-				<a href="@{Logins.formPainel()}" class="btn btn-add">Voltar</a>
-			</div>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2025 Gerenciamento de Salas. Todos os direitos
-			reservados.</p>
-	</footer>
+    <header>
+        <h2>Salas Cadastradas</h2>
+        <div class="user-info">
+            #{if session.usuarioLogado}
+            <p>Usuário Logado: ${session.usuarioLogado}</p>
+            <a href="@{Logins.sair}" class="btn btn-danger btn-sm">Sair</a>
+            #{else}
+            <p>
+                Você não está logado. <a href="@{Logins.logar}" class="btn btn-primary btn-sm">Login</a>
+            </p>
+            #{/else} #{/if}
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h3 class="text-center">Lista de Salas</h3>
+            <div class="row">
+                #{list items:salas, as:'s'}
+                <div class="col-md-4 mb-4">
+                    <div class="card p-3">
+                        <h5 class="card-title">Sala ${s.numero}</h5>
+                        <p><strong>Capacidade:</strong> ${s.capacidade} pessoas</p>
+                        <p><strong>Equipamento:</strong> ${s.equipamento}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="@{Salas.detalhar(s.id)}" class="btn btn-success">Detalhar</a>
+                            <a href="@{Salas.editarSala(s.id)}" class="btn btn-warning">Editar</a>
+                            <a href="@{Salas.deletarSala(s.id)}" class="btn btn-danger">Remover</a>
+                        </div>
+                    </div>
+                </div>
+                #{/list}
+            </div>
+            <div class="text-center mt-4">
+                <a href="@{Logins.formPainel()}" class="btn btn-secondary">Voltar</a>
+         </div>
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sistema de Administração. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
-
-
-
-

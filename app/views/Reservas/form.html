@@ -1,129 +1,125 @@
-#{extends 'main.html' /} #{set title:'Realizar Reservas' /}
+#{extends 'main.html' /}
+#{set title:'Realizar Reservas' /}
 
-<html>
-<meta charset="UTF-8">
-<style>
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #2F4F4F;
-	color: #333;
-}
-
-header {
-	background-color: #00FF7F;
-	color: #2F4F4F;
-	padding: 1rem 0;
-	text-align: center;
-}
-
-main {
-	max-width: 1200px;
-	margin: 2rem auto;
-	padding: 1rem;
-}
-
-h1, h2, h3 {
-	margin-bottom: 1rem;
-}
-
-.form-section {
-	background-color: white;
-	padding: 1.5rem;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	margin-bottom: 2rem;
-}
-
-.form-section label {
-	display: block;
-	margin-bottom: 0.5rem;
-	font-weight: bold;
-}
-
-.form-section input, .form-section select {
-	width: 100%;
-	padding: 0.5rem;
-	margin-bottom: 1rem;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-size: 1rem;
-}
-
-.form-section .btn {
-	background-color: #00FF7F;
-	color: #2F4F4F;
-	border: none;
-	padding: 0.7rem 1.5rem;
-	font-size: 1rem;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
-
-.form-section .btn:hover {
-	background-color: #0056b3;
-}
-
-.list-section {
-	background-color: white;
-	padding: 1.5rem;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.cards {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 1rem;
-}
-
-.card {
-	background-color: #f8f9fa;
-	padding: 1rem;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	text-align: center;
-}
-
-.card h3 {
-	margin-bottom: 0.5rem;
-}
-
-footer {
-	text-align: center;
-	padding: 1rem;
-	background-color: #00FF7F;
-	margin-top: 2rem;
-}
-</style>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Realizar Reservas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            background-color: black;
+        }
+        header {
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .user-info {
+            font-size: 1rem;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 5% auto;
+            text-align: center;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #006400;
+            color: white;
+        }
+        .list-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 2% auto;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(0, 100, 0, 0.8);
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
 <body>
+    <header>
+        <h2>Realizar Reservas</h2>
+        <div class="user-info">
+            #{if session.usuarioLogado}
+            <p>Usuário Logado: ${session.usuarioLogado}</p>
+            <a href="@{Logins.sair}" class="btn btn-danger btn-sm">Sair</a>
+            #{else}
+            <p>
+                Você não está logado. <a href="@{Logins.logar}" class="btn btn-primary btn-sm">Login</a>
+            </p>
+            #{/else} #{/if}
+        </div>
+    </header>
 
-	<header>
-		<h1>Reserva de Salas</h1>
-	</header>
+    <main>
+        <div class="form-container">
+            <form action="@{Reservas.consultarReserva}" method="post">
+                <input type="hidden" name="reserva.id" value="${r?.id}" />
 
-	<main>
-		<section class="form-section">
-			<h2>Realizar Nova Reserva</h2>
+                <div class="form-group">
+                    <label for="responsavel">Responsável pela reserva:</label>
+                    <input type="text" id="responsavel" name="reserva.responsavel" value="${r?.responsavel}" class="form-control" required>
+                </div>
 
-			<form action="@{Reservas.consultarReserva}">
+                <div class="form-group">
+                    <label for="sala">Selecione a sala:</label>
+                    <select id="sala" name="reserva.sala.id" class="form-control" required>
+                        #{list items:salas, as:'s'}
+                        <option value="${s?.id}" ${s?.id==r?.sala?.id ? 'selected' : ''}>Sala ${s.numero}</option>
+                        #{/list}
+                    </select>
+                </div>
 
-				<input type="hidden" name="reserva.id" value="${r?.id}" /> <label>Responsável
-					pela reserva:</label> <input type="text" name="reserva.responsavel"
-					value="${r?.responsavel}" required /><br /> <label>Selecione
-					a sala:</label> <select id="sala" name="reserva.sala.id"
-					value="${r?.sala?.id}" required> #{list items:salas,
-					as:'s'}
-					<option value="${s?.id}" ${s?.id==r?.sala?.id ? 'selected' : ''}>Sala ${s.numero}</option>
-					#{/list}
-				</select> <label>Data da reserva:</label> <input type="date"
-					name="reserva.dataReserva" value="${r?.dataReserva}" required /><br />
+                <div class="form-group">
+                    <label for="dataReserva">Data da reserva:</label>
+                    <input type="date" id="dataReserva" name="reserva.dataReserva" value="${r?.dataReserva}" class="form-control" required>
+                </div>
 
-				<label>Selecione o horário:</label> <select id="reservaID"
-					name="reserva.horario" value="${r?.horario}" required>
+               <div class="form-group">
+				<label>Selecione o horário:</label> 
+				<select id="reservaID" name="reserva.horario" value="${r?.horario}" class="form-control"required>
 
 					<option value="07:00 - 07:45" ${r?.horario=='07:00 - 07:45' ? 'selected' : ''}>07:00
 						- 07:45</option>
@@ -150,29 +146,33 @@ footer {
 					<option value="17:15 - 18:00" ${r?.horario=='17:15 - 18:00' ? 'selected' : ''}>17:15
 						- 18:00</option>
 				</select>
+                </div>
 
-				<button type="submit" class="btn">Realizar Reserva</button>
-		</section>
-		<section class="list-section">
-			<h2>Salas Disponíveis</h2>
-			<div class="cards">
-				#{list items:salas, as:'s'}
-				<div class="card">
-					<h3>Sala ${s.numero}</h3>
-					<p>Capacidade: ${s.capacidade} pessoas</p>
-					<p>Equipamento: ${s.equipamento}</p>
-				</div>
-				#{/list}
-			</div>
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2025 Reserva de Salas. Todos os direitos reservados.</p>
-	</footer>
+                <button type="submit" class="btn btn-primary">Realizar Reserva</button>
+                 <a href="@{Logins.formPainel()}" class="btn btn-secondary">Voltar</a>
+            </form>
+        </div>
 
+        <div class="list-container">
+            <h2 class="text-center">Salas Disponíveis</h2>
+            <div class="row">
+                #{list items:salas, as:'s'}
+                <div class="col-md-4">
+                    <div class="card text-center mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Sala ${s.numero}</h5>
+                            <p class="card-text">Capacidade: ${s.capacidade} pessoas</p>
+                            <p class="card-text">Equipamento: ${s.equipamento}</p>
+                        </div>
+                    </div>
+                </div>
+                #{/list}
+            </div>
+        </div>
+    </main>
 
-	</form>
+    <footer>
+        <p>&copy; 2025 Sistema de Reservas. Todos os direitos reservados.</p>
+    </footer>
 </body>
-
 </html>
-
